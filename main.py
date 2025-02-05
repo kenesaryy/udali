@@ -15,7 +15,7 @@ headers = {"Authorization": f"Bearer {auth_token}"}
 
 def get_embeddings(prompt: str):
     response = requests.post("https://inzen-embeddings-service-756670937217.us-central1.run.app/embeddings", headers=headers, json={"text": prompt})
-    print(response.json())
+    print(response.text)
 
 
 if __name__ == "__main__":
