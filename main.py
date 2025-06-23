@@ -262,6 +262,10 @@ class CPURegressionTrainer(Trainer):
         return (loss, predictions, labels)
 
 # === НАСТРОЙКИ ОБУЧЕНИЯ ДЛЯ CPU ===
+from transformers import TrainingArguments
+print("TrainingArguments source:", TrainingArguments.__module__)
+print("Файл:", __import__("transformers").__file__)
+
 training_args = TrainingArguments(
     output_dir="./cpu-regression-results",
     num_train_epochs=5,
