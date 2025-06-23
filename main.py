@@ -264,28 +264,26 @@ class CPURegressionTrainer(Trainer):
 # === НАСТРОЙКИ ОБУЧЕНИЯ ДЛЯ CPU ===
 training_args = TrainingArguments(
     output_dir="./cpu-regression-results",
-    num_train_epochs=5,  # Больше эпох для CPU
-    per_device_train_batch_size=1,  # Минимальный batch size
+    num_train_epochs=5,
+    per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
-    gradient_accumulation_steps=4,  # Уменьшили
+    gradient_accumulation_steps=4,
     warmup_steps=5,
-    learning_rate=1e-4,  # Чуть больше learning rate
+    learning_rate=1e-4,
     logging_steps=5,
     eval_steps=20,
     save_steps=50,
-    evaluation_strategy="steps",
+    evaluation_strategy="steps",           # требует transformers >= 4.10
     save_strategy="steps",
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
     greater_is_better=False,
     remove_unused_columns=False,
     dataloader_pin_memory=False,
-    dataloader_num_workers=0,  # Важно для CPU
-    fp16=False,  # Отключаем fp16 для CPU
-    use_cpu=True,
-    report_to=None,  # Отключаем wandb/tensorboard
+    dataloader_num_workers=0,
+    fp16=False,
+    report_to=None,
 )
-
 # === МЕТРИКИ ===
 def compute_metrics(eval_pred):
     predictions, labels = eval_pred
