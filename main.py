@@ -128,6 +128,7 @@ def load_lightweight_model():
 
 model, tokenizer, model_name = load_lightweight_model()
 model.to(device)
+model.lm_head.weight = nn.Parameter(model.lm_head.weight.clone())
 
 # === КАСТОМНЫЙ DATASET ===
 class LightweightRegressionDataset(Dataset):
@@ -336,7 +337,9 @@ except Exception as e:
 
 # === СОХРАНЕНИЕ ===
 try:
-    regression_model.save_pretrained("./cpu-regression-model")
+    # regression_model.save_pretrained("./cpu-regression-model")
+    # tokenizer.save_pretrained("./cpu-regression-model")
+    torch.save(regression_model.state_dict(), "./cpu-regression-model/pytorch_model.bin")
     tokenizer.save_pretrained("./cpu-regression-model")
     print("💾 Модель сохранена!")
 except Exception as e:
