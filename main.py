@@ -43,7 +43,7 @@ def load_dataset_from_json(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             dataset = json.load(f)
         print(f"Загружен датасет: {len(dataset)} примеров")
-        return dataset
+        return dataset[:100]
     except FileNotFoundError:
         print(f"Файл {file_path} не найден!")
         return None
@@ -269,7 +269,7 @@ print("Файл:", __import__("transformers").__file__)
 
 training_args = TrainingArguments(
     output_dir="./cpu-regression-results",
-    num_train_epochs=5,
+    num_train_epochs=3,
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
     gradient_accumulation_steps=4,
