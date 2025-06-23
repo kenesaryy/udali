@@ -276,7 +276,7 @@ training_args = TrainingArguments(
     learning_rate=1e-4,
     logging_steps=5,
     eval_steps=20,
-    save_steps=50,
+    save_steps=40,
     evaluation_strategy="steps",           # требует transformers >= 4.10
     save_strategy="steps",
     load_best_model_at_end=True,
